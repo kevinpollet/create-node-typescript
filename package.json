@@ -1,0 +1,15 @@
+{
+  "name": "create-typescript-module",
+  "version": "0.0.0",
+  "description": "Create Node.js module in TypeScript",
+  "author": "kevinpollet <pollet.kevin@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/kevinpollet/create-typescript-module#readme",
+  "bugs": {
+    "url": "https://github.com/kevinpollet/create-typescript-module/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinpollet/create-typescript-module.git"
+  }
+}
