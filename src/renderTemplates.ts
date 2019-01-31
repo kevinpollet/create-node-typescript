@@ -21,34 +21,43 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import chalk from "chalk";
-import program from "commander";
-import inquirer from "inquirer";
+import { outputFile, readdir, readFile, stat } from "fs-extra";
+import { compile } from "handlebars";
 import { join } from "path";
-import { renderTemplates } from "./renderTemplates";
 
-program.usage("[destination]").parse(process.argv);
+export const renderTemplates = (
+  dirPath: string,
+  destinationDirPath: string,
+  context: object,
+  rootDir: string = dirPath // TODO: remove/simplify
+): Promise<void> =>
+  stat(dirPath).then(stats => {
+    if (!stats.isDirectory()) {
+      const relativePath = dirPath.replace(rootDir, "");
 
-const destination = program.args.length
-  ? join(process.cwd(), program.args.shift()!)
-  : process.cwd();
+      return readFile(dirPath).then(buffer =>
+        outputFile(
+          join(destinationDirPath, relativePath),
+          compile(buffer.toString())(context)
+        )
+      );
+    }
 
-const templatesDir = join(__dirname, "../templates");
-
-inquirer
-  .prompt({
-    message: "Name:",
-    name: "name",
-    type: "input"
-  })
-  .then(answers => renderTemplates(templatesDir, destination, answers))
-  .then(() => {
-    const message = chalk.green(`Project generated\n`);
-    process.stdout.write(message);
-    process.exit(0);
-  })
-  .catch((err: Error) => {
-    const message = chalk.red(err.message + "\n");
-    process.stderr.write(message);
-    process.exit(1);
+    return readdir(dirPath)
+      .then(files =>
+        Promise.all(
+          files.map(file =>
+            renderTemplates(
+              join(dirPath, file),
+              destinationDirPath,
+              context,
+              rootDir
+            )
+          )
+        )
+      )
+      .then(() => {
+        // TODO: must be removed
+        return;
+      });
   });
