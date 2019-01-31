@@ -21,46 +21,10 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import program from "commander";
-import inquirer from "inquirer";
-import { join } from "path";
-import { error, success } from "./messages";
-import { renderTemplates } from "./renderTemplates";
+import chalk from "chalk";
 
-program.usage("[destination]").parse(process.argv);
+export const success = (msg: string) =>
+  process.stdout.write(chalk`{green ${msg}}\n`);
 
-const destination = program.args.length
-  ? join(process.cwd(), program.args.shift()!)
-  : process.cwd();
-
-const templatesDir = join(__dirname, "../templates");
-
-const prompts = [
-  {
-    message: "Name:",
-    name: "name",
-    type: "input"
-  },
-  {
-    message: "Description:",
-    name: "description",
-    type: "input"
-  },
-  {
-    message: "Version:",
-    name: "version",
-    type: "input"
-  }
-];
-
-inquirer
-  .prompt(prompts)
-  .then(answers => renderTemplates(templatesDir, destination, answers))
-  .then(() => {
-    success("Project generated");
-    process.exit(0);
-  })
-  .catch((err: Error) => {
-    error(err.message);
-    process.exit(1);
-  });
+export const error = (msg: string) =>
+  process.stdout.write(chalk`{red ${msg}}\n`);
