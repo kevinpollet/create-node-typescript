@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "pretty": true,
+    "declaration": true,
     "esModuleInterop": true,
     "lib": ["es2015"],
     "module": "commonjs",
