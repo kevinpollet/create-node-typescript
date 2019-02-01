@@ -21,15 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import { spawn } from "child_process";
 import program from "commander";
 import inquirer from "inquirer";
 import { join } from "path";
-import { error, success } from "./messages";
+import { error, info, success } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 
 program.usage("[destination]").parse(process.argv);
 
-const destination = program.args.length
+const destinationDir = program.args.length
   ? join(process.cwd(), program.args.shift()!)
   : process.cwd();
 
@@ -55,9 +56,21 @@ const prompts = [
 
 inquirer
   .prompt(prompts)
-  .then(answers => renderTemplates(templatesDir, destination, answers))
+  .then(answers => {
+    info("Render project templates");
+    return renderTemplates(templatesDir, destinationDir, answers);
+  })
   .then(() => {
-    success("Project generated");
+    info("Install project dependencies");
+
+    return new Promise((resolve, reject) => {
+      spawn("npm", ["--prefix", destinationDir, "install"], {
+        stdio: "inherit"
+      }).on("close", code => (code === 0 ? resolve() : reject()));
+    });
+  })
+  .then(() => {
+    success("Enjoy");
     process.exit(0);
   })
   .catch((err: Error) => {

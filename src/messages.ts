@@ -23,6 +23,9 @@
 
 import chalk from "chalk";
 
+export const info = (msg: string) =>
+  process.stdout.write(chalk`{blue ${msg}}\n`);
+
 export const success = (msg: string) =>
   process.stdout.write(chalk`{green ${msg}}\n`);
 

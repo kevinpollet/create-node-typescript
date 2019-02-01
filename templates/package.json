@@ -1,5 +1,8 @@
 {
   "name": "{{ name }}",
   "description": "{{ description }}",
-  "version": "{{ version }}"
+  "version": "{{ version }}",
+  "dependencies": {
+    "typescript": "3.2.4"
+  }
 }
