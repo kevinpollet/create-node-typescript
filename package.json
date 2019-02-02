@@ -1,6 +1,6 @@
 {
   "name": "create-node-typescript",
-  "version": "0.0.0",
+  "version": "1.0.0-beta.1",
   "description": "npm initializer to scaffold a Node.js module using TypeScript",
   "author": "kevinpollet <pollet.kevin@gmail.com>",
   "license": "MIT",
