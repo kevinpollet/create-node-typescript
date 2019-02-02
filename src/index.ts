@@ -26,7 +26,7 @@ import program from "commander";
 import dashify from "dashify";
 import inquirer from "inquirer";
 import { basename, join } from "path";
-import { error, info, success } from "./messages";
+import { error, info } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 
 program.usage("[destination]").parse(process.argv);
@@ -66,12 +66,12 @@ const prompts = [
 inquirer
   .prompt(prompts)
   .then(answers => {
-    info("Render project templates");
+    info("Rendering project templates...");
 
     return renderTemplates(templatesDir, destinationDir, answers);
   })
   .then(() => {
-    info("Initialize Git repository");
+    info("Initializing Git repository...");
 
     return new Promise((resolve, reject) => {
       spawn("git", ["init", destinationDir], {
@@ -84,7 +84,7 @@ inquirer
     });
   })
   .then(() => {
-    info("Install project dependencies");
+    info("Resolving project dependencies...");
 
     return new Promise((resolve, reject) => {
       spawn("npm", ["--prefix", destinationDir, "install"], {
@@ -97,10 +97,10 @@ inquirer
     });
   })
   .then(() => {
-    success("Enjoy");
+    info("Enjoy");
     process.exit(0);
   })
   .catch((err: Error) => {
-    error(err.stack || "Error");
+    error(err);
     process.exit(1);
   });

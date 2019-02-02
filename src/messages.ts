@@ -24,10 +24,9 @@
 import chalk from "chalk";
 
 export const info = (msg: string) =>
-  process.stdout.write(chalk`{blue ${msg}}\n`);
+  process.stdout.write(chalk`\n{blue ${msg}}\n`);
 
-export const success = (msg: string) =>
-  process.stdout.write(chalk`{green ${msg}}\n`);
-
-export const error = (msg: string) =>
-  process.stdout.write(chalk`{red ${msg}}\n`);
+export const error = (msg: string | Error) =>
+  process.stdout.write(
+    chalk`\n{red ${typeof msg === "string" ? msg : msg.stack!}}\n`
+  );
