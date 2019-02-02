@@ -28,11 +28,13 @@
   "dependencies": {
     "chalk": "2.4.2",
     "commander": "2.19.0",
+    "dashify": "2.0.0",
     "fs-extra": "7.0.1",
     "handlebars": "4.0.12",
     "inquirer": "6.2.2"
   },
   "devDependencies": {
+    "@types/dashify": "1.0.0",
     "@types/fs-extra": "5.0.4",
     "@types/handlebars": "4.0.40",
     "@types/inquirer": "0.0.43",

@@ -1,6 +1,6 @@
 {
   "name": "{{ name }}",
-  "description": "{{ description }}",
+  "description": "{{{ description }}}",
   "version": "{{ version }}",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

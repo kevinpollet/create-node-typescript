@@ -23,8 +23,9 @@
 
 import { spawn } from "child_process";
 import program from "commander";
+import dashify from "dashify";
 import inquirer from "inquirer";
-import { join } from "path";
+import { basename, join } from "path";
 import { error, info, success } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 
@@ -38,16 +39,19 @@ const templatesDir = join(__dirname, "../templates");
 
 const prompts = [
   {
+    default: dashify(basename(destinationDir), { condense: true }),
     message: "Name:",
     name: "name",
     type: "input"
   },
   {
+    default: "A Node.js module written in TypeScript",
     message: "Description:",
     name: "description",
     type: "input"
   },
   {
+    default: "1.0.0",
     message: "Version:",
     name: "version",
     type: "input"
