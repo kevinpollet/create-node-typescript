@@ -23,7 +23,8 @@
     "format": "prettier --write '**/*.{ts,md,json}'",
     "lint:src": "tslint -p tsconfig.json",
     "build": "tsc",
-    "prebuild": "run-s clean lint:src"
+    "prebuild": "run-s clean lint:src",
+    "prepack": "run-s build"
   },
   "dependencies": {
     "chalk": "2.4.2",

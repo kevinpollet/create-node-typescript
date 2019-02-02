@@ -33,12 +33,12 @@ export const renderTemplates = (
 ): Promise<void> =>
   stat(dirPath).then(stats => {
     if (!stats.isDirectory()) {
-      const relativePath = dirPath.replace(rootDir, "");
+      const relativePath = dirPath.replace(rootDir, "").replace(".hbs", "");
 
       return readFile(dirPath).then(buffer =>
         outputFile(
           join(destinationDirPath, relativePath),
-          compile(buffer.toString())(context)
+          compile(buffer.toString())(context) // TODO render only files ending with hbs
         )
       );
     }

@@ -16,7 +16,7 @@
     "build": "tsc",
     "test": "jest",
     "prebuild": "run-s clean lint:src",
-    "pretest": "lint:test"
+    "pretest": "run-s lint:test"
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",
