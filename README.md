@@ -4,16 +4,8 @@
 
 ## Getting Started
 
-If you're using npm:
-
 ```shell
 $ npx create-node-typescript awesome-module-name
-```
-
-If you're using yarn:
-
-```shell
-$ yarn create node-typescript awesome-module-name
 ```
 
 ## What's included?
