@@ -71,6 +71,19 @@ inquirer
     return renderTemplates(templatesDir, destinationDir, answers);
   })
   .then(() => {
+    info("Initialize Git repository");
+
+    return new Promise((resolve, reject) => {
+      spawn("git", ["init", destinationDir], {
+        stdio: "inherit",
+      }).on("close", code =>
+        code === 0
+          ? resolve()
+          : reject(new Error("Could not initialize Git repository"))
+      );
+    });
+  })
+  .then(() => {
     info("Install project dependencies");
 
     return new Promise((resolve, reject) => {
