@@ -1,6 +1,6 @@
 # {{ name }}
 
-## Scripts
+## Available Scripts
 
 - `clean`: remove generated files
 - `lint:src`: lint source files with [TSLint][1]
