@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/kevinpollet/create-node-typescript.git"
   },
-  "tags": [
+  "keywords": [
     "initializer",
     "node",
     "typescript"
