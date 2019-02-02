@@ -71,7 +71,11 @@ inquirer
     return new Promise((resolve, reject) => {
       spawn("npm", ["--prefix", destinationDir, "install"], {
         stdio: "inherit",
-      }).on("close", code => (code === 0 ? resolve() : reject()));
+      }).on("close", code =>
+        code === 0
+          ? resolve()
+          : reject(new Error("Could not install npm dependencies"))
+      );
     });
   })
   .then(() => {
@@ -79,6 +83,6 @@ inquirer
     process.exit(0);
   })
   .catch((err: Error) => {
-    error(err.message);
+    error(err.stack || "Error");
     process.exit(1);
   });
