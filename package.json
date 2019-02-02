@@ -1,18 +1,18 @@
 {
-  "name": "create-typescript-module",
+  "name": "create-node-typescript",
   "version": "0.0.0",
-  "description": "Create Node.js module in TypeScript",
+  "description": "npm initializer to scaffold a Node.js module using TypeScript",
   "author": "kevinpollet <pollet.kevin@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/kevinpollet/create-typescript-module#readme",
+  "homepage": "https://github.com/kevinpollet/create-node-typescript#readme",
   "bugs": {
-    "url": "https://github.com/kevinpollet/create-typescript-module/issues"
+    "url": "https://github.com/kevinpollet/create-node-typescript/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinpollet/create-typescript-module.git"
+    "url": "git+https://github.com/kevinpollet/create-node-typescript.git"
   },
-  "bin": "bin/create-typescript-module.js",
+  "bin": "bin/create-node-typescript.js",
   "files": [
     "bin",
     "lib",
