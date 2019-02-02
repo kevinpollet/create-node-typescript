@@ -11,9 +11,11 @@
     "clean": "rimraf lib",
     "format": "prettier --write '**/*.{ts,md,json}'",
     "lint:src": "tslint -p tsconfig.json",
+    "lint:test": "tslint 'test/**/*.ts'",
     "build": "tsc",
     "test": "jest",
-    "prebuild": "run-s clean lint:src"
+    "prebuild": "run-s clean lint:src",
+    "pretest": "lint:test"
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",

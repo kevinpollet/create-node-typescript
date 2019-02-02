@@ -7,6 +7,7 @@
 - `clean`: remove generated files
 - `format`: format files with [Prettier][1]
 - `lint:src`: lint source files with [TSLint][2]
+- `lint:test`: lint test files with [TSLint][2]
 - `build`: compile [TypeScript][3] sources
 - `test`: run tests with [Jest][4]
 
