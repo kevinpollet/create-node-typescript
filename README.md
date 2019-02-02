@@ -1,6 +1,20 @@
 # Create Node Typescript &middot; [![Build Status](https://travis-ci.com/kevinpollet/create-node-typescript.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/kevinpollet/create-node-typescript) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-Create a [Node.js][1] module using [TypeScript][2] without config boilerplate.
+📦 ⚡ Create a [Node.js][1] module in [TypeScript][2] without config boilerplate.
+
+## Getting Started
+
+If you're using npm:
+
+```shell
+$ npx create-node-typescript awesome-module-name
+```
+
+If you're using yarn:
+
+```shell
+$ yarn create node-typescript awesome-module-name
+```
 
 ## What's included?
 
