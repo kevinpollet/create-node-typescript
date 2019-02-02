@@ -61,40 +61,60 @@ const prompts = [
     name: "author",
     type: "input",
   },
+  {
+    choices: ["npm", "yarn"],
+    message: "Package manager:",
+    name: "packageManager",
+    type: "list",
+  },
 ];
 
 inquirer
-  .prompt(prompts)
+  .prompt<{
+    name: string;
+    description: string;
+    version: string;
+    author: string;
+    packageManager: "npm" | "yarn";
+  }>(prompts)
   .then(answers => {
     info("Rendering project templates...");
 
-    return renderTemplates(templatesDir, destinationDir, answers);
-  })
-  .then(() => {
-    info("Initializing Git repository...");
+    return renderTemplates(templatesDir, destinationDir, answers)
+      .then(() => {
+        info("Initializing Git repository...");
 
-    return new Promise((resolve, reject) => {
-      spawn("git", ["init", destinationDir], {
-        stdio: "inherit",
-      }).on("close", code =>
-        code === 0
-          ? resolve()
-          : reject(new Error("Could not initialize Git repository"))
-      );
-    });
-  })
-  .then(() => {
-    info("Resolving project dependencies...");
+        return new Promise((resolve, reject) => {
+          spawn("git", ["init", destinationDir], {
+            stdio: "inherit",
+          }).on("close", code =>
+            code === 0
+              ? resolve()
+              : reject(new Error("Could not initialize Git repository"))
+          );
+        });
+      })
+      .then(() => {
+        info("Resolving project dependencies...");
 
-    return new Promise((resolve, reject) => {
-      spawn("npm", ["--prefix", destinationDir, "install"], {
-        stdio: "inherit",
-      }).on("close", code =>
-        code === 0
-          ? resolve()
-          : reject(new Error("Could not install npm dependencies"))
-      );
-    });
+        return new Promise((resolve, reject) => {
+          spawn(
+            answers.packageManager,
+            [
+              answers.packageManager === "npm" ? "--prefix" : "--cwd",
+              destinationDir,
+              "install",
+            ],
+            {
+              stdio: "inherit",
+            }
+          ).on("close", code =>
+            code === 0
+              ? resolve()
+              : reject(new Error("Could not install npm dependencies"))
+          );
+        });
+      });
   })
   .then(() => {
     info("Enjoy");

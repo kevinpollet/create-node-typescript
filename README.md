@@ -5,7 +5,13 @@
 ## Getting Started
 
 ```shell
-$ npx create-node-typescript awesome-module-name
+$ npx create-node-typescript awesome-module
+```
+
+If you're using [Yarn][8]:
+
+```shell
+$ yarn create node-typescript awesome-module
 ```
 
 ## What's included?
@@ -27,3 +33,4 @@ See [License.md](./License.md)
 [5]: https://jestjs.io/
 [6]: https://github.com/typicode/husky
 [7]: https://github.com/okonet/lint-staged
+[8]: https://yarnpkg.com/en/
