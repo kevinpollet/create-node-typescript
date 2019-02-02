@@ -48,6 +48,9 @@
     "tslint-config-prettier": "1.17.0",
     "typescript": "3.2.4"
   },
+  "prettier": {
+    "trailingComma": "es5"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

@@ -42,20 +42,20 @@ const prompts = [
     default: dashify(basename(destinationDir), { condense: true }),
     message: "Name:",
     name: "name",
-    type: "input"
+    type: "input",
   },
   {
     default: "A Node.js module written in TypeScript",
     message: "Description:",
     name: "description",
-    type: "input"
+    type: "input",
   },
   {
     default: "1.0.0",
     message: "Version:",
     name: "version",
-    type: "input"
-  }
+    type: "input",
+  },
 ];
 
 inquirer
@@ -70,7 +70,7 @@ inquirer
 
     return new Promise((resolve, reject) => {
       spawn("npm", ["--prefix", destinationDir, "install"], {
-        stdio: "inherit"
+        stdio: "inherit",
       }).on("close", code => (code === 0 ? resolve() : reject()));
     });
   })
