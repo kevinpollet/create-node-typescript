@@ -62,6 +62,7 @@ inquirer
   .prompt(prompts)
   .then(answers => {
     info("Render project templates");
+
     return renderTemplates(templatesDir, destinationDir, answers);
   })
   .then(() => {
