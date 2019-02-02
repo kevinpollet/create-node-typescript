@@ -20,7 +20,7 @@ $ yarn create node-typescript awesome-module
 - Code formatting with [Prettier][3]
 - Code linting with [TSLint][4]
 - Testing with [Jest][5]
-- Always well formatted code with [Husky][6] and [lint-staged][7]
+- Code formatting on commit with [Husky][6] and [lint-staged][7]
 
 ## License
 
