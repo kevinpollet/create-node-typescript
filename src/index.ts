@@ -56,6 +56,11 @@ const prompts = [
     name: "version",
     type: "input",
   },
+  {
+    message: "Author:",
+    name: "author",
+    type: "input",
+  },
 ];
 
 inquirer
