@@ -4,7 +4,9 @@
 
 ## Getting Started
 
-![termcast](https://cdn.jsdelivr.net/gh/kevinpollet/create-node-typescript@master/termcast.svg)
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/kevinpollet/create-node-typescript@master/termcast.svg">
+</p>
 
 ```shell
 $ npx create-node-typescript awesome-module
