@@ -30,7 +30,17 @@ import { error, info } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 import { spawn } from "./spawn";
 
-program.usage("[destination]").parse(process.argv);
+program
+  .usage("[options] [destination]")
+  .option("--name <name>", "Define the package name")
+  .option("--description <description>", "Define the package description")
+  .option("--author <author>", "Define the package author")
+  .option(
+    "--packageManager <packageManager>",
+    "Define the package manager to use",
+    /^(npm|yarn)$/i
+  )
+  .parse(process.argv);
 
 const destinationDir = program.args.length
   ? join(process.cwd(), program.args.shift()!)
@@ -45,34 +55,33 @@ const questions = [
     name: "name",
     type: "input",
     validate: (input: string) => validatePackageName(input).validForNewPackages,
+    when: !program.name,
   },
   {
     default: "A Node.js module written in TypeScript",
     message: "Description:",
     name: "description",
     type: "input",
-  },
-  {
-    default: "1.0.0",
-    message: "Version:",
-    name: "version",
-    type: "input",
+    when: !program.description,
   },
   {
     message: "Author:",
     name: "author",
     type: "input",
+    when: !program.author,
   },
   {
     choices: ["npm", "yarn"],
     message: "Package manager:",
     name: "packageManager",
     type: "list",
+    when: !program.packageManager,
   },
 ];
 
 inquirer
   .prompt<Answers>(questions)
+  .then(answers => ({ ...answers, ...program }))
   .then(answers => {
     info("Rendering project templates...");
 

@@ -28,6 +28,7 @@
     "format": "prettier --write '**/*.{ts,md,json}'",
     "lint:src": "tslint -p tsconfig.json",
     "build": "tsc",
+    "test": "scripts/test.sh",
     "prebuild": "run-s clean lint:src",
     "prepack": "run-s build",
     "preversion": "run-s build",
