@@ -39,7 +39,8 @@
     "dashify": "2.0.0",
     "fs-extra": "7.0.1",
     "handlebars": "4.0.12",
-    "inquirer": "6.2.2"
+    "inquirer": "6.2.2",
+    "validate-npm-package-name": "3.0.0"
   },
   "devDependencies": {
     "@types/dashify": "1.0.0",

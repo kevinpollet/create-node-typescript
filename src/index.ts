@@ -26,6 +26,7 @@ import program from "commander";
 import dashify from "dashify";
 import inquirer from "inquirer";
 import { basename, join } from "path";
+import validatePackageName from "validate-npm-package-name";
 import { error, info } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 
@@ -43,6 +44,7 @@ const prompts = [
     message: "Name:",
     name: "name",
     type: "input",
+    validate: (input: string) => validatePackageName(input).validForNewPackages,
   },
   {
     default: "A Node.js module written in TypeScript",
