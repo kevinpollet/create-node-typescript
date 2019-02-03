@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-![termcast](./termcast.svg)
+![termcast](https://cdn.jsdelivr.net/gh/kevinpollet/create-node-typescript@master/termcast.svg)
 
 ```shell
 $ npx create-node-typescript awesome-module
