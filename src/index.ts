@@ -111,7 +111,7 @@ inquirer
           ).on("close", code =>
             code === 0
               ? resolve()
-              : reject(new Error("Could not install npm dependencies"))
+              : reject(new Error("Could not install project dependencies"))
           );
         });
       });
