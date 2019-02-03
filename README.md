@@ -14,6 +14,10 @@ If you're using [Yarn][8]:
 $ yarn create node-typescript awesome-module
 ```
 
+<p align="center">
+  <img src="https://github.com/kevinpollet/create-node-typescript/blob/master/termcast.svg" width="600" />
+</p>
+
 ## What's included?
 
 - Strict [TypeScript][2] type checking
@@ -24,7 +28,7 @@ $ yarn create node-typescript awesome-module
 
 ## License
 
-See [License.md](./License.md)
+See [License](./LICENSE.md)
 
 [1]: https://nodejs.org/en/
 [2]: https://www.typescriptlang.org/
