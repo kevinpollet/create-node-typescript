@@ -28,7 +28,7 @@ $ yarn create node-typescript awesome-module
 
 ## License
 
-See [License](./LICENSE.md)
+See [LICENSE.md](./LICENSE.md).
 
 [1]: https://nodejs.org/en/
 [2]: https://www.typescriptlang.org/
