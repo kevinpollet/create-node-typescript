@@ -4,6 +4,8 @@
 
 ## Getting Started
 
+![termcast](./termcast.svg)
+
 ```shell
 $ npx create-node-typescript awesome-module
 ```
@@ -13,10 +15,6 @@ If you're using [Yarn][8]:
 ```shell
 $ yarn create node-typescript awesome-module
 ```
-
-<p align="center">
-  <img src="https://github.com/kevinpollet/create-node-typescript/blob/master/termcast.svg" width="600" />
-</p>
 
 ## What's included?
 
