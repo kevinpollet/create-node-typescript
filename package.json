@@ -29,7 +29,9 @@
     "lint:src": "tslint -p tsconfig.json",
     "build": "tsc",
     "prebuild": "run-s clean lint:src",
-    "prepack": "run-s build"
+    "prepack": "run-s build",
+    "preversion": "run-s build",
+    "postversion": "git push --follow-tags"
   },
   "dependencies": {
     "chalk": "2.4.2",
