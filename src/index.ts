@@ -21,14 +21,14 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { spawn } from "child_process";
 import program from "commander";
 import dashify from "dashify";
-import inquirer from "inquirer";
+import inquirer, { Answers } from "inquirer";
 import { basename, join } from "path";
 import validatePackageName from "validate-npm-package-name";
 import { error, info } from "./messages";
 import { renderTemplates } from "./renderTemplates";
+import { spawn } from "./spawn";
 
 program.usage("[destination]").parse(process.argv);
 
@@ -38,7 +38,7 @@ const destinationDir = program.args.length
 
 const templatesDir = join(__dirname, "../templates");
 
-const prompts = [
+const questions = [
   {
     default: dashify(basename(destinationDir), { condense: true }),
     message: "Name:",
@@ -72,51 +72,37 @@ const prompts = [
 ];
 
 inquirer
-  .prompt<{
-    name: string;
-    description: string;
-    version: string;
-    author: string;
-    packageManager: "npm" | "yarn";
-  }>(prompts)
+  .prompt<Answers>(questions)
   .then(answers => {
     info("Rendering project templates...");
 
     return renderTemplates(templatesDir, destinationDir, answers)
-      .then(() => {
-        info("Initializing Git repository...");
+      .then(() => answers)
+      .catch(() =>
+        Promise.reject(new Error("Could not render project templates"))
+      );
+  })
+  .then(answers => {
+    info("Initializing Git repository...");
 
-        return new Promise((resolve, reject) => {
-          spawn("git", ["init", destinationDir], {
-            stdio: "inherit",
-          }).on("close", code =>
-            code === 0
-              ? resolve()
-              : reject(new Error("Could not initialize Git repository"))
-          );
-        });
-      })
-      .then(() => {
-        info("Resolving project dependencies...");
+    return spawn("git", ["init", destinationDir])
+      .then(() => answers)
+      .catch(() =>
+        Promise.reject(new Error("Could not initialize Git repository"))
+      );
+  })
+  .then(answers => {
+    info("Resolving project dependencies...");
 
-        return new Promise((resolve, reject) => {
-          spawn(
-            answers.packageManager,
-            [
-              answers.packageManager === "npm" ? "--prefix" : "--cwd",
-              destinationDir,
-              "install",
-            ],
-            {
-              stdio: "inherit",
-            }
-          ).on("close", code =>
-            code === 0
-              ? resolve()
-              : reject(new Error("Could not install project dependencies"))
-          );
-        });
-      });
+    return spawn(answers.packageManager, [
+      answers.packageManager === "npm" ? "--prefix" : "--cwd",
+      destinationDir,
+      "install",
+    ])
+      .then(() => answers)
+      .catch(() =>
+        Promise.reject(new Error("Could not install project dependencies"))
+      );
   })
   .then(() => {
     info("Enjoy");
