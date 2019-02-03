@@ -30,6 +30,9 @@ import { error, info } from "./messages";
 import { renderTemplates } from "./renderTemplates";
 import { spawn } from "./spawn";
 
+// workaround for https://github.com/tj/commander.js/issues/648
+program.optionValues = {};
+
 program
   .usage("[options] [destination]")
   .option("--name <name>", "Define the package name")
@@ -40,6 +43,12 @@ program
     "Define the package manager to use",
     /^(npm|yarn)$/i
   )
+  .on("option:name", value => {
+    program.optionValues.name = value;
+  })
+  .on("option:description", value => {
+    program.optionValues.description = value;
+  })
   .parse(process.argv);
 
 const destinationDir = program.args.length
@@ -55,14 +64,14 @@ const questions = [
     name: "name",
     type: "input",
     validate: (input: string) => validatePackageName(input).validForNewPackages,
-    when: !program.name,
+    when: !program.optionValues.name,
   },
   {
     default: "A Node.js module written in TypeScript",
     message: "Description:",
     name: "description",
     type: "input",
-    when: !program.description,
+    when: !program.optionValues.description,
   },
   {
     message: "Author:",
@@ -81,7 +90,7 @@ const questions = [
 
 inquirer
   .prompt<Answers>(questions)
-  .then(answers => ({ ...answers, ...program }))
+  .then(answers => ({ ...answers, ...program, ...program.optionValues }))
   .then(answers => {
     info("Rendering project templates...");
 
