@@ -7,10 +7,6 @@ Create a bare minimum project to start writing a [Node.js][1] module in [TypeScr
 
 ## Getting Started
 
-<p>
-  <img width="500" src="https://cdn.jsdelivr.net/gh/kevinpollet/create-node-typescript@master/term.svg">
-</p>
-
 ```shell
 $ npx create-node-typescript awesome-module
 ```
