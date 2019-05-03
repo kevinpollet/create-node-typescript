@@ -38,6 +38,7 @@
     "validate-npm-package-name": "3.0.0"
   },
   "devDependencies": {
+    "@kevinpollet/tsconfig": "0.1.0",
     "@types/dashify": "1.0.0",
     "@types/fs-extra": "5.0.5",
     "@types/handlebars": "4.1.0",

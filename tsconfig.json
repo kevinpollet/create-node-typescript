@@ -1,16 +1,7 @@
 {
+  "extends": "@kevinpollet/tsconfig",
   "compilerOptions": {
-    "strict": true,
-    "pretty": true,
-    "esModuleInterop": true,
-    "lib": ["es2015"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "lib",
-    "target": "es2015"
+    "outDir": "lib"
   },
   "include": ["src"]
 }
