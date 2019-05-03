@@ -5,13 +5,8 @@
   "author": "kevinpollet <pollet.kevin@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/kevinpollet/create-node-typescript#readme",
-  "bugs": {
-    "url": "https://github.com/kevinpollet/create-node-typescript/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kevinpollet/create-node-typescript.git"
-  },
+  "bugs": "https://github.com/kevinpollet/create-node-typescript/issues",
+  "repository": "github:kevinpollet/create-node-typescript",
   "keywords": [
     "initializer",
     "node",
@@ -24,15 +19,14 @@
     "templates"
   ],
   "scripts": {
-    "clean": "rimraf lib *.log",
-    "format": "prettier --write '**/*.{ts,md,json}'",
-    "lint:src": "tslint -p tsconfig.json",
     "build": "tsc",
-    "test": "scripts/test.sh",
+    "clean": "rimraf lib *.log",
+    "format": "prettier --write '**/*.{ts,md,yml,json}'",
+    "lint:src": "tslint -p tsconfig.json",
     "prebuild": "run-s clean lint:src",
     "prepack": "run-s build",
-    "preversion": "run-s build",
-    "postversion": "git push --follow-tags"
+    "test": "scripts/test.sh",
+    "preversion": "run-p build test"
   },
   "dependencies": {
     "chalk": "2.4.2",

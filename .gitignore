@@ -2,5 +2,5 @@ lib/
 node_modules/
 tmp/
 .DS_Store
+.vscode
 *.log
-*.tgz
