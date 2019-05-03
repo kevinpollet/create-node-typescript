@@ -11,12 +11,6 @@ Create a bare minimum project to start writing a [Node.js][1] module in [TypeScr
 $ npx create-node-typescript awesome-module
 ```
 
-If you're using [Yarn][8]:
-
-```shell
-$ yarn create node-typescript awesome-module
-```
-
 ## What's included?
 
 - Strict [TypeScript][2] type checking
@@ -36,4 +30,3 @@ See [LICENSE.md](./LICENSE.md).
 [5]: https://jestjs.io/
 [6]: https://github.com/typicode/husky
 [7]: https://github.com/okonet/lint-staged
-[8]: https://yarnpkg.com/en/
