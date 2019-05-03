@@ -36,7 +36,7 @@ program
   .parse(process.argv);
 
 const destinationDir = program.args.length
-  ? join(process.cwd(), program.args.shift()!)
+  ? join(process.cwd(), program.args.shift()!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
   : process.cwd();
 
 const templatesDir = join(__dirname, "../templates");

@@ -11,7 +11,7 @@ export const spawn = (
   command: string,
   args: string[],
   options: childProcess.SpawnOptions = { stdio: "inherit" }
-) =>
+): Promise<void> =>
   new Promise((resolve, reject) => {
     childProcess
       .spawn(command, args, options)

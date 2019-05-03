@@ -7,10 +7,10 @@
 
 import chalk from "chalk";
 
-export const info = (msg: string) =>
+export const info = (msg: string): boolean =>
   process.stdout.write(chalk`\n{blue ${msg}}\n`);
 
-export const error = (msg: string | Error) =>
+export const error = (msg: string | Error): boolean =>
   process.stdout.write(
-    chalk`\n{red ${typeof msg === "string" ? msg : msg.stack!}}\n`
+    chalk`\n{red ${typeof msg === "string" ? msg : msg.stack!}}\n` // eslint-disable-line @typescript-eslint/no-non-null-assertion
   );
