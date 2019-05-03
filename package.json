@@ -20,10 +20,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "clean": "rimraf lib *.log",
-    "format": "prettier --write '**/*.{ts,md,yml,json}'",
-    "lint:src": "tslint -p tsconfig.json",
-    "prebuild": "run-s clean lint:src",
+    "clean": "rimraf lib",
+    "format": "prettier --write '**/*.{ts,md,yml,json}' '!lib/**/*'",
+    "lint": "tslint -p tsconfig.json",
+    "prebuild": "run-s clean lint",
     "prepack": "run-s build",
     "test": "scripts/test.sh",
     "preversion": "run-p build test"
