@@ -21,7 +21,7 @@ $ npx create-node-typescript awesome-module
 
 ## License
 
-See [LICENSE.md](./LICENSE.md).
+[MIT](./LICENSE.md)
 
 [1]: https://nodejs.org/en/
 [2]: https://www.typescriptlang.org/
