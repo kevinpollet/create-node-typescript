@@ -2,9 +2,6 @@
 
 Create a bare minimum project to start writing a [Node.js][1] module in [TypeScript][2] without config boilerplate.
 
-- [Getting Started](#getting-started)
-- [What's included](#whats-included)
-
 ## Getting Started
 
 ```shell
