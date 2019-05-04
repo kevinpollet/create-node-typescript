@@ -1,4 +1,4 @@
-# Create Node Typescript &middot; [![Build Status](https://travis-ci.com/kevinpollet/create-node-typescript.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/kevinpollet/create-node-typescript) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+# Create Node Typescript &middot; [![Build Status](https://dev.azure.com/kevinpollet/create-node-typescript/_apis/build/status/kevinpollet.create-node-typescript?branchName=master)](https://dev.azure.com/kevinpollet/create-node-typescript/_build/latest?definitionId=1&branchName=master) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
 Create a bare minimum project to start writing a [Node.js][1] module in [TypeScript][2] without config boilerplate.
 
