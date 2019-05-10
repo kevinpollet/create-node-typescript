@@ -1,5 +1,14 @@
 trigger:
-  - master
+  batch: true
+  branches:
+    include:
+      - master
+      - refs/tags/*
+
+pr:
+  branches:
+    include:
+      - master
 
 jobs:
   - job: Build
@@ -7,18 +16,66 @@ jobs:
       vmImage: ubuntu-16.04
     strategy:
       matrix:
-        node_8_x:
+        node8:
           node_version: 8.x
-        node_10_x:
+        node10:
           node_version: 10.x
-        node_11_x:
+        node11:
           node_version: 11.x
-        node_12_x:
+        node12:
           node_version: 12.x
     steps:
       - task: NodeTool@0
+        displayName: Install Node.js
         inputs:
           versionSpec: $(node_version)
+
       - script: npm ci
+        displayName: Install dependencies
+
       - script: npm run build
+        displayName: Build
+
       - script: npm test
+        displayName: Test
+
+      - task: ArchiveFiles@2
+        displayName: Archive build artifact
+        condition: and(eq(variables['node_version'], '8.x'), contains(variables['Build.SourceBranch'], 'refs/tags/'))
+        inputs:
+          includeRootFolder: false
+          rootFolderOrFile: $(Build.SourcesDirectory)
+
+      - task: PublishBuildArtifacts@1
+        displayName: Publish build artifact
+        condition: and(eq(variables['node_version'], '8.x'), contains(variables['Build.SourceBranch'], 'refs/tags/'))
+
+  - job: Deploy
+    dependsOn: Build
+    condition: and(succeeded('Build'), contains(variables['Build.SourceBranch'], 'refs/tags/'))
+    pool:
+      vmImage: ubuntu-16.04
+    steps:
+      - checkout: none
+
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: 8.x
+
+      - task: DownloadBuildArtifacts@0
+        displayName: Download build artifact
+        inputs:
+          artifactName: drop
+
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: $(System.ArtifactsDirectory)/**/*.zip
+          destinationFolder: $(System.ArtifactsDirectory)/deploy
+
+      - task: Npm@1
+        displayName: Deploy to npm registry
+        inputs:
+          command: publish
+          publishEndpoint: kevinpollet-npm-registry-connection
+          workingDir: $(System.ArtifactsDirectory)/deploy
