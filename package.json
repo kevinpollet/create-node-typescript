@@ -40,7 +40,7 @@
   "devDependencies": {
     "@kevinpollet/tsconfig": "0.1.0",
     "@types/dashify": "1.0.0",
-    "@types/fs-extra": "5.0.5",
+    "@types/fs-extra": "5.1.0",
     "@types/handlebars": "4.1.0",
     "@types/inquirer": "0.0.44",
     "@types/node": "8.10.48",
